@@ -1,7 +1,7 @@
 const biodata = {
     nama: 'Ari Wibowo',
     alamat: 'Pekalongan, Jawa Tengah',
-    umur: 15
+    umur: 15,
 }
 
 // 1. untuk mengganti object + menambah
