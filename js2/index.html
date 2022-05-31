@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZZZZZ</title>
+</head>
+<body>
+    
+</body>
+<script>
+const additionMerge = ({num1:numeric1, num2, operator='tambah'}) => {
+    let hasil;
+    if(operator == 'bagi') {
+       hasil = `bagi =  ${numeric1/num2}`
+    }else if (operator == 'tambah') {
+       hasil = `penjumlahan =  ${numeric1+num2}`
+    }else if(operator == 'kurang') {
+       hasil = `kurang =  ${numeric1-num2}`
+    }else {
+       hasil = 'operator salah'
+    }
+    
+    return hasil
+}
+const quiz = (user)=> {
+    const {name, kelas, answer} = user
+    return additionMerge(answer)
+
+}
+
+
+document.write(quiz({
+    name: 'Dzakia',
+    kelas: 'XI',
+    answer:{num1: 1, num2: 50, operator: 'tambah'}
+}))
+
+</script>
+</html>
