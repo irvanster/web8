@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <script>
+        async function getProducts() {
+            try {
+                const result = await fetch('https://jsonplaceholder.typicode.com/posts')//harus ditunggu
+                const data = await result.json()
+                data.map((item)=> {
+                    console.log(item.id)
+                })
+            } catch (error) {
+                console.log(error.message)
+            }
+        }
+        getProducts()
+        async function getProduk() {
+            try {
+                const result = await axios.get('https://jsonplaceholder.typicode.com/posts')//harus ditunggu
+                // console.log(result) //menjalankan ini dulu, kalo tanpa await
+                // axios = result.data
+                result.data.map((item)=> {
+                    console.log(item.id)
+                })
+            } catch (error) {
+                console.log(error.message)
+            } finally {
+                console.log('fetch telah dilakukan')
+            }
+        }
+
+
+        getProduk()
+    </script>
+</body>
+</html>
