@@ -1,0 +1,92 @@
+/* 
+body {
+    margin: 0;
+}
+:root {
+    font-size: 100px
+}
+.card {
+    /* 11 = a
+    12 = b
+    13 = c
+    14 = d
+    15 = f */
+    /* RGB
+    Red, Green, Blue */
+    /*background-color: #f5009522; /* 6 */
+    background-color: #ff7878; /* 6 */
+    /*background-color: #0f0; /* 3 */
+    width: 100vw;
+    height: 80vh;
+    border: 1px dashed red;
+
+}
+
+.box {
+    width: 30px;
+    height: 30px;
+    background: red;
+    transition: 0.9s;
+}
+/* pseudoclass */
+.box:nth-child(1) {
+    background-color: green;
+}
+.box:nth-child(2) {
+    background-color: blue;
+}
+.box:nth-child(3) {
+    background-color: purple;
+}
+.box:nth-child(4) {
+    background-color: red;
+}
+.box:hover {
+    background-color: yellow;
+}
+.kotak {
+    font-size: 50px;
+}
+/* font-size = 16px = mengikuti font bawaan browser, asalakan belum kita ubah, value masih tetep 16px, yang mempengaruhi itu yang berbeda
+kalo rem = root
+kalo em = parent, 
+jadi 1 em, itu bisa berbeda-beda tiap element, karena berbeda pula dari parent-nya
+rem = root emphasis
+root = body/html
+em = emphasis
+   = akan memyesuaikan dengan element parentnya, 
+      parentnya diatur font-size = 100px, maka 1em = 100px */
+.box-description {
+    width: 100vw; /* viewport width */
+    height: auto;
+    font-size: 1rem;
+    /* 1 rem = 16px
+    2 rem = 16*2
+    3 rem =16*3 */
+    color: white
+}
+/* psedudo element */
+.box-description::first-letter {
+    font-size: 2rem;
+}
+#navbar-header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px 50px; /* padding itu jarak dalam*/
+    top: 0; /*kunci */
+    /* margin: 50px; */
+    position: sticky;
+    /* position: fixed; */
+    /*padding: 50px 20px; /* padding itu jarak dalam*/
+    /* padding-left: ;
+    padding-right: ; */
+    /* margin: 50px; /* marign itu jarak luar*/
+
+}
+
+/* padding: 20px = atas, kanan, bawah, kiri = 20px
+padding: 20px 15px = atas & bawah : 20px, 15 horizotal / kiri dan kanan */
+/* padding: 15px 20px 50px 100px : urutan value sesuai arah jarum jam */
+
+
+*/

@@ -1,0 +1,21 @@
+{
+  "name": "backend_tokopaedi",
+  "version": "1.0.0",
+  "description": "source code untuk backend tokopaedi.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js && nodemon cerita.js"
+  },
+  "keywords": [
+    "search",
+    "sort",
+    "tokopaedi"
+  ],
+  "author": "irvanster",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "jsonwebtoken": "^8.5.1"
+  }
+}

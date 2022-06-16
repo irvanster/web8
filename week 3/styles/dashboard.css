@@ -1,0 +1,27 @@
+
+.nav-inner {
+    display: flex;
+    flex-direction: row; /* default*/
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #f0f0f0;
+    align-items: center;
+}
+.container {
+    display: flex;
+}
+/* parent = card-premier .card-section = child */
+.card-premiere {
+    padding: 12px;
+    margin: 14px;
+    width: 28vw;
+    border: 0.5px solid #DEDEDE;
+    border-radius: 10px;
+}
+
+.card-premiere .card-section {
+    padding: 1rem;
+}
+.card-premiere-price {
+ justify-content: space-between;
+}
