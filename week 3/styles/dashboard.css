@@ -7,21 +7,51 @@
     background-color: #f0f0f0;
     align-items: center;
 }
+.tablet-badge {
+    display: none;
+}
 .container {
     display: flex;
 }
+.card-wrapper {
+    width: 25%;
+  }
 /* parent = card-premier .card-section = child */
 .card-premiere {
-    padding: 12px;
-    margin: 14px;
-    width: 28vw;
     border: 0.5px solid #DEDEDE;
     border-radius: 10px;
+    margin: 13px;
 }
+
 
 .card-premiere .card-section {
     padding: 1rem;
 }
 .card-premiere-price {
  justify-content: space-between;
+}
+
+@media only screen and (min-width: 600px) {
+    .card-wrapper {
+        width: 50%;
+    }
+} 
+@media only screen and (max-width: 600px) {
+    .card-wrapper {
+        width: 100%;
+    }
+    .navbar-right {
+        visibility: hidden;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    .card-wrapper {
+        width: 33.333%;
+    }
+} 
+@media only screen and (min-width: 768px) and (max-width: 1280px) {
+    .tablet-badge {
+        display: block;
+    }
 }
