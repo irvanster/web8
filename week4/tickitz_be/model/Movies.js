@@ -22,6 +22,7 @@ module.exports = {
       return new Promise((resolve, reject)=> {
         const {title, cover, release_date, director, description, casts, categories} = req.body
 
+        console.log(req.body, 'reaqqqq')
         db.query(`INSERT INTO movies(title, cover, release_date, director, description, casts, categories) VALUES('${title}', '${cover}','${release_date}','${director}','${description}','${casts}','${categories}')`,(err, results)=> {
           if(err) {
             console.log(err)
@@ -31,7 +32,6 @@ module.exports = {
             message: "add new movies success",
             status: 200,
             data: {
-              id: results.insertId,
               ...req.body,
             }
           })

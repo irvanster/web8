@@ -5,6 +5,7 @@ const port = 5001
 const bodyParser = require('body-parser')
 const router = require('./routes')
 const cors = require('cors')
+const path = require('path')
 app.use(cors({
   origin: 'http://localhost:3000'
   // origin: ['http://localhost:3000', 'http://tickitz.netlify.app']
@@ -18,6 +19,10 @@ app.use(bodyParser.json())
 //www-url-form-encoded
 app.use(bodyParser.urlencoded({ extended: true }))
 //form-data (multer)
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+// app.use(express.static('public'))
+// localhost:3000/2bcsd.jpg
 // router(app, '/api/v1',)
 app.use('/api/v1', router)
 
