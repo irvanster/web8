@@ -1,6 +1,6 @@
 // model = tempat dimana kita meletakkan data yang berhubungan dengan database
 const db = require('../helper/db_connection')
-
+const fs = require('fs');
 module.exports = {
     get: (req, res)=> {
       return new Promise((resolve, reject)=> {
@@ -68,13 +68,30 @@ module.exports = {
     remove:(req, res)=> {
       return new Promise((resolve, reject)=> {
         const {id} = req.params
-        db.query(`DELETE FROM movies where id=${id}`,(err, results)=> {
-          if(err) {reject({message: "ada error"})}
-          resolve.send({
-            message: "delete movies success",
-            status: 200,
-            data: results
-          })
+        db.query(`SELECT cover FROM movies WHERE id=${id}`, (err ,resultData) => {
+          if(err) {
+            console.log(err)
+          }
+          if(!resultData.length) {
+            reject({message: "id tidak ditemukan"})
+          }else {
+            let cover = resultData[0].cover
+            db.query(`DELETE FROM movies where id=${id}`,(err, results)=> {
+              if(err) {reject({message: "ada error"})}
+              fs.unlink(`./uploads/${cover}`, function (err) {
+                if (err) resolve({
+                  message: "delete movies success",
+                  status: 200,
+                  data: results
+                });
+                resolve({
+                  message: "delete movies success",
+                  status: 200,
+                  data: results
+                });
+              });
+            })
+          }
         })
       })
     }
