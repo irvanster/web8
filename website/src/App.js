@@ -1,48 +1,74 @@
-import logo from './logo.svg';
 import './App.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import Navbar from './components/navbar'
+import ItemMovie from './components/itemMovie'
+import { useState } from 'react';
+import axios from 'axios'
+const App = ()=>{
+  const [userLogin, setUserLogin] = useState(JSON.parse(localStorage.getItem('userLogin')) ?? {})
+  // const [userLogin, setUserLogin] = useState({
+  //   isLogin: false,
+  //   data: {}
+  // })
+  const [formAddData, setFormAddData] = useState({
+    email: '',
+    password: ''
+  })
+  
+  const handleLogin = async (e)=> {
+    e.preventDefault()
+    console.log(formAddData)
+    try {
+      const result = await axios({
+        method: "POST",
+        data: formAddData,
+        url: 'https://test.dhanz.me/api/v1/auth/login'
+      })
+      console.log(result.data.data.token)
+      // localStorage.setItem("token", result.data.data.token) // 1
+      localStorage.setItem("userLogin", JSON.stringify({
+        isLogin: true,
+        data: result.data.data
+      })) // 2 ✅
+      setUserLogin((prevData)=> ({
+        ...prevData,
+        isLogin: true,
+        data: result.data.data
+      }))
+      // kalo misal lebih dari 1 value / object maka dibutuhkan JSON.stringify()
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-function App() {
-  const [dataMovies, setDataMovies] = useState([])
-  useEffect(()=> {
-    axios.get('http://localhost:5001/api/v1/movies').then((res)=> {
-      setDataMovies(res.data.data)
-    }).catch((err)=> {
-      console.log(err.response.message)
-    })
-  },[])
-  console.log(dataMovies)
-  return (
-    <div className="App">
-    <div class="container flex-wrap">
-    {dataMovies.map((item, index)=> {
-        return(
-          <div class="flex flex-column card-wrapper">
-          <div class="shadow card card-premiere">
-              <div class="flex align-items-center card-premiere-title card-section">
-                  <div><img src={item.cover} /></div>
-                  <div>
-                      <h5>{item.title}</h5>
-                      <p>{item.description}</p>
-                  </div>
-              </div>
-              <div class="flex align-items-center card-premiere-price card-section">
-                  <div class="flex flex-1">
-                      <button class="btn btn-block btn-primary-outline">Update</button>
-                  </div>
-                  <div class="flex flex-1">
-                      <button class="btn btn-block btn-danger-outline">Delete</button>
-                  </div>
-              </div>
-          </div>
+  return(
+    <>
+      <Navbar  />
+      <ItemMovie isLogin={userLogin.isLogin} />
+      
+      {userLogin.isLogin ?  (
+      <div>
+        KAMU UDAH LOGIN, INI ADA DATA KAMU
+        [] [] [] [] []
       </div>
-        )
-      })}
-    </div>
 
-    </div>
-  );
+      ): (
+      <div>
+        KAMU BELOM LOGIN
+        <form onSubmit={(e)=>handleLogin(e)}>
+          <input type={'email'} placeholder="Masukkan email" onChange={(e)=>setFormAddData((prevData)=> ({
+            ...prevData,
+            email: e.target.value
+          }))} /><br/>
+          <input type={'password'} placeholder="Masukkan passwrd" onChange={(e)=>setFormAddData((prevData)=> ({
+            ...prevData,
+            password: e.target.value
+          }))} />
+          <button className='btn btn-primary' onClick={()=> handleLogin()}>Login</button>
+        </form>
+      </div>
+      )}
+    </>
+  )
 }
-
 export default App;
