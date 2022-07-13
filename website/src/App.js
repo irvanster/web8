@@ -1,8 +1,9 @@
-import './App.css';
+// import './App.css';
 import Navbar from './components/navbar'
 import ItemMovie from './components/itemMovie'
 import { useState } from 'react';
 import axios from 'axios'
+import Movies from './components/movies'
 const App = ()=>{
   const [userLogin, setUserLogin] = useState(JSON.parse(localStorage.getItem('userLogin')) ?? {})
   // const [userLogin, setUserLogin] = useState({
@@ -46,13 +47,7 @@ const App = ()=>{
       <Navbar  />
       <ItemMovie isLogin={userLogin.isLogin} />
       
-      {userLogin.isLogin ?  (
-      <div>
-        KAMU UDAH LOGIN, INI ADA DATA KAMU
-        [] [] [] [] []
-      </div>
-
-      ): (
+      {userLogin.isLogin ?  <Movies />: (
       <div>
         KAMU BELOM LOGIN
         <form onSubmit={(e)=>handleLogin(e)}>

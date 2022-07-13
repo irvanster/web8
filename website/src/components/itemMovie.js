@@ -6,6 +6,7 @@ const ItemMovie = (props)=>{
                 <div>[X] [X] [X] EDITABLE</div>
             ):(
                 <div>[] [] []</div>
+
             )}
         </>
     )
