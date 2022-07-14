@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, Movies } from "./Pages";
+import { Home, Movies } from "./Pages/";
+// import Home from "./Pages/Home";
+// import Movies from "./Pages/Movies";
 const MainNavigation = () => {
   return (
     <BrowserRouter>
