@@ -20,14 +20,19 @@ const GetMoviesError = (error) => {
     };
 };
 
-export const GetMovies = () => {
+export const GetMovies = ({page=1, limit}) => {
     return (dispatch) => {
         dispatch(GetMoviesRequest())
         axios({
             method: "GET",
-            url: "https://test.dhanz.me/api/v1/movies",
-        }) .then((res)=> { //ketika sukses, dispatch sucess
-            dispatch(GetMoviesSucess(res.data)) //trigger / dispatch
+            url: `https://test.dhanz.me/api/v1/movies${page ? `?page=${page}`:``}${limit ? `&limit=${limit}`:``}`,
+          }) .then((res)=> { //ketika sukses, dispatch sucess
+            dispatch(GetMoviesSucess(res.data.data))
+            // dispatch(GetMoviesSucess(res.data.data.results)) //trigger / dispatch
+            //res.data.data.results, mengkorbankan, data lain kayak totalpage, totalRow gabisa ngambil//v1 (BAD)
+            // if(res.data.message === "EMPTY") {
+            //   dispatch(GetMoviesSucess(res.data.message)) 
+            // }
         }).catch((err)=> {
             dispatch(GetMoviesError(err))
         })

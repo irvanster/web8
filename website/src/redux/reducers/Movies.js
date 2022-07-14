@@ -1,6 +1,14 @@
 const initialState = {
     loading: false,
-    data: [],
+    data: {
+        results: [],
+        totalAllData: 0,
+        totalPage: 0,
+        totalRows: 0,
+        // message: "successfully get data",
+        // status: 200,
+        // success: true,
+    },
 }
 
 
@@ -9,9 +17,9 @@ const Fetch = (state=initialState, action={})=> {
         case "GET_MOVIES_REQUEST":
             return {...state, loading: true}
         case "GET_MOVIES_ERROR":
-            return {...state, loading: false, error: action.payload}
+            return {...state, loading: false, data: state.data, error: action.payload}
         case "GET_MOVIES_SUCCESS":
-            return {...state, loading: false, data: action.payload}
+            return {...state, loading: false, data: action.payload, error: null}
         default:
             return state
     }
